@@ -1,21 +1,0 @@
-[OK] cardiff-xlmr           (cls   ) macro-F1=0.7530 acc=0.7629
-[OK] clapAI-roberta-large   (cls   ) macro-F1=0.5624 acc=0.6870
-[OK] seara-rubert-base      (cls   ) macro-F1=0.6905 acc=0.6898
-[OK] seara-rubert-tiny2     (cls   ) macro-F1=0.6525 acc=0.6485
-[OK] blanchefort-rubert     (cls   ) macro-F1=0.6422 acc=0.6598
-Error while downloading from https://huggingface.co/api/resolve-cache/models/cointegrated/rubert-tiny-sentiment-balanced/e0679dd4460e48648f5d4d819ae0f505384f5a9d/vocab.txt: HTTPSConnectionPool(host='huggingface.co', port=443): Read timed out.
-Trying to resume download...
-[OK] cointegrated-tiny      (cls   ) macro-F1=0.6473 acc=0.6560
-[OK] tabularisai-distil     (cls   ) macro-F1=0.5988 acc=0.6204
-[OK] clapAI-modernbert-lg   (cls   ) macro-F1=0.5278 acc=0.6279
-'(ReadTimeoutError("HTTPSConnectionPool(host='huggingface.co', port=443): Read timed out. (read timeout=10)"), '(Request ID: 1497795e-b555-4b15-99b2-7d2b323105a8)')' thrown while requesting GET https://huggingface.co/api/resolve-cache/models/clapAI/modernBERT-base-multilingual-sentiment/baa7f26fee4eca5aec35538caa5fdda7b86d83c6/tokenizer.json
-Retrying in 1s [Retry 1/5].
-[OK] clapAI-modernbert-bs   (cls   ) macro-F1=0.5283 acc=0.6036
-Device set to use cuda:0
-[OK] mdeberta-xnli-2mil7    (nli   ) macro-F1=0.6225 acc=0.6176
-Device set to use cuda:0
-[OK] mdeberta-mnli-xnli     (nli   ) macro-F1=0.6116 acc=0.6401
-  0%|          | 0/34 [00:00<?, ?it/s]  3%|▎         | 1/34 [00:03<01:45,  3.21s/it]  6%|▌         | 2/34 [00:03<00:46,  1.45s/it]  9%|▉         | 3/34 [00:03<00:27,  1.12it/s] 12%|█▏        | 4/34 [00:04<00:21,  1.37it/s] 15%|█▍        | 5/34 [00:04<00:17,  1.68it/s] 18%|█▊        | 6/34 [00:04<00:14,  1.94it/s] 21%|██        | 7/34 [00:05<00:14,  1.91it/s] 24%|██▎       | 8/34 [00:06<00:16,  1.61it/s] 26%|██▋       | 9/34 [00:06<00:12,  2.05it/s] 29%|██▉       | 10/34 [00:06<00:11,  2.08it/s] 32%|███▏      | 11/34 [00:07<00:09,  2.43it/s] 35%|███▌      | 12/34 [00:07<00:10,  2.08it/s] 38%|███▊      | 13/34 [00:08<00:08,  2.33it/s] 41%|████      | 14/34 [00:08<00:09,  2.20it/s] 44%|████▍     | 15/34 [00:08<00:07,  2.54it/s] 47%|████▋     | 16/34 [00:09<00:05,  3.03it/s] 50%|█████     | 17/34 [00:09<00:07,  2.38it/s] 53%|█████▎    | 18/34 [00:10<00:08,  1.95it/s] 56%|█████▌    | 19/34 [00:11<00:09,  1.58it/s] 59%|█████▉    | 20/34 [00:11<00:07,  1.89it/s] 62%|██████▏   | 21/34 [00:12<00:07,  1.85it/s] 65%|██████▍   | 22/34 [00:12<00:06,  1.94it/s] 68%|██████▊   | 23/34 [00:13<00:05,  2.00it/s] 71%|███████   | 24/34 [00:13<00:04,  2.02it/s] 74%|███████▎  | 25/34 [00:13<00:04,  2.24it/s] 76%|███████▋  | 26/34 [00:14<00:04,  1.85it/s] 79%|███████▉  | 27/34 [00:15<00:03,  1.93it/s] 82%|████████▏ | 28/34 [00:15<00:02,  2.12it/s] 85%|████████▌ | 29/34 [00:16<00:02,  1.94it/s] 88%|████████▊ | 30/34 [00:16<00:01,  2.33it/s] 91%|█████████ | 31/34 [00:16<00:01,  2.42it/s] 94%|█████████▍| 32/34 [00:17<00:00,  2.21it/s] 97%|█████████▋| 33/34 [00:17<00:00,  2.63it/s]100%|██████████| 34/34 [00:17<00:00,  1.94it/s]
-[FAIL] geracl-user2           (geracl): IndexError: list index out of range
-
-saved -> /home/zabolonkov/MPT/modelling/data/processed/preds/oob_external.parquet  (11737 rows, 11 models OK)
