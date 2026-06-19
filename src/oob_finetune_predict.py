@@ -1,8 +1,8 @@
 """Predict on the OOB set with the saved fine-tuned encoder models (A and B).
 
-The fine-tuned encoder is a tuned hyper-parameter in src/finetune.py (currently
-USER-bge-m3 vs USER2-base), so the model label is derived from the actually
-selected encoder recorded in finetune_meta.json rather than hard-coded.
+The fine-tuned encoder is a tuned hyper-parameter in src/finetune.py (USER-bge-m3 /
+USER2-base / ru-en-RoSBERTa / rubert-mini-frida), so the model label is derived from
+the actually selected encoder recorded in finetune_meta.json rather than hard-coded.
 
 Loads models/finetune_A and models/finetune_B (created by src/finetune.py) and
 writes data/processed/preds/oob_ours_finetune.parquet.

@@ -6,7 +6,7 @@ Reference linear baselines (kept for comparison):
   sklearn LogisticRegression in models/emb_logreg_A.joblib
 
 GPU CatBoost heads (the upgraded classical models), trained on BOTH variants
-A and B for comparability with the fine-tuned BGE-m3 (A)/(B):
+A and B for comparability with the fine-tuned encoder (A)/(B):
 - CatBoost(text+feats): raw text (native tokenizer) + hand-crafted sentiment
   features -> models/catboost_text_{A,B}.cbm
 - CatBoost(emb): frozen USER-bge-m3 embeddings as numeric features

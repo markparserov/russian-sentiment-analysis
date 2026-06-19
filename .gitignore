@@ -1,8 +1,13 @@
-data/
-models/
+data/*
+!data/combined_platform_proportional_sample.xlsx
+!data/interim/
+!data/interim/**
+!data/processed/
+!data/processed/**
 __pycache__/
 *.pyc
 *.log
 logs_*.txt
 catboost_info/
 .ipynb_checkpoints/
+data/processed/embeddings_full_f16.npy

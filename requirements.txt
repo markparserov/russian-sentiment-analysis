@@ -1,0 +1,49 @@
+# Sentiment-analysis project — direct dependencies (portable spec).
+#
+# Pinned to the versions used during development; pip resolves the transitive
+# deps for the target platform. Python 3.10+ recommended.
+
+# --- core DL / NLP ---
+torch==2.6.0                 # dev box runs the +cu124 build; pick the wheel that
+                             # matches your CUDA: https://pytorch.org/get-started/locally/
+transformers==4.49.0
+sentence-transformers==5.5.0
+datasets==3.2.0
+accelerate==1.14.0           # required at runtime by the transformers Trainer (fine-tuning)
+
+# --- classical ML / hyper-parameter search ---
+catboost==1.2.10
+scikit-learn==1.7.2
+optuna==4.9.0
+
+# --- embedding clustering (EDA) ---
+umap-learn==0.5.12
+hdbscan==0.8.43
+
+# --- data / scientific stack ---
+numpy==2.2.6
+pandas==2.3.3
+scipy==1.15.3
+joblib==1.5.3
+openpyxl==3.1.5              # pandas .xlsx reader (raw Linis-Crowd / OOB sources)
+
+# --- visualisation ---
+matplotlib==3.10.9
+seaborn==0.13.2
+
+# --- misc ---
+tqdm==4.67.3
+
+# --- external comparison labeler (src/oob_external.py) ---
+geracl @ git+https://github.com/deepvk/geracl.git@c3ab268050790a44080bffd3856f77e2f5b4abd7
+
+# --- to run sentiment_analysis.ipynb (optional) ---
+jupyterlab==4.5.8
+ipykernel==7.3.0
+ipywidgets==8.1.8
+
+# --- optional GPU acceleration (RAPIDS) ---
+# cuML provides a fast GPU LogisticRegression in src/oob_classical.py; the code
+# falls back to scikit-learn automatically when it is absent. RAPIDS is not on
+# PyPI proper — install from the NVIDIA index, matching your CUDA:
+#   pip install --extra-index-url https://pypi.nvidia.com cuml-cu12==26.2.0

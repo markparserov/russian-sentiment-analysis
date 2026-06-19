@@ -2,9 +2,10 @@
 
 Two stages:
   1. SEARCH - random search over a grid of training hyperparameters *and the
-     encoder itself* (USER-bge-m3 vs USER2-base). Each trial trains on the
-     SEARCH_VARIANT train split (balanced subsample) and is scored by macro-F1
-     on that variant's *validation* split. The best config is picked by val F1.
+     encoder itself* (USER-bge-m3 / USER2-base / ru-en-RoSBERTa / rubert-mini-frida).
+     Each trial trains on the SEARCH_VARIANT train split (balanced subsample) and
+     is scored by macro-F1 on that variant's *validation* split. The best config
+     is picked by val F1.
   2. FINAL  - the best config is retrained on Variant A and Variant B (larger
      balanced subsample), models are saved, and predictions on the A/B test
      sets are stored so the models notebook can compare against the baselines.
@@ -58,18 +59,26 @@ L2I = {l: i for i, l in enumerate(LABELS)}
 SEED = 42
 
 # ----------------------------- search space --------------------------------
-# The encoder is now one of the searched hyperparameters.
+# The encoder is now one of the searched hyperparameters. All four are standard
+# encoder architectures (XLM-RoBERTa / ModernBERT / RoBERTa / BERT) that expose a
+# *ForSequenceClassification head through AutoModelForSequenceClassification, so
+# no extra dependencies are needed beyond the current transformers stack.
 SEARCH_SPACE = {
-    "encoder": ["deepvk/USER-bge-m3", "deepvk/USER2-base"],
+    "encoder": [
+        "deepvk/USER-bge-m3",        # XLM-RoBERTa
+        "deepvk/USER2-base",         # ModernBERT
+        "ai-forever/ru-en-RoSBERTa",  # RoBERTa (ruRoberta-large)
+        "sergeyzh/rubert-mini-frida",  # BERT (rubert-tiny2 distil of FRIDA)
+    ],
     "lr": [1e-5, 2e-5, 3e-5, 5e-5],
     "epochs": [1, 2, 3],
     "batch_size": [16, 32],          # per device
-    "max_len": [128, 256],
-    "weight_decay": [0.01, 0.1],
+    "max_len": [128, 256, 512],
+    "weight_decay": [0, 0.01, 0.1],
     "warmup_ratio": [0.06, 0.1],
 }
 # random-search budget; if >= full grid size, the whole grid is evaluated
-N_TRIALS = int(os.environ.get("FT_N_TRIALS", "40"))
+N_TRIALS = int(os.environ.get("FT_N_TRIALS", "128"))
 SEARCH_VARIANT = os.environ.get("FT_SEARCH_VARIANT", "A")   # tune on this variant
 PER_CLASS_SEARCH = int(os.environ.get("FT_PER_CLASS_SEARCH", "15000"))
 PER_CLASS_FINAL = int(os.environ.get("FT_PER_CLASS_FINAL", "50000"))
@@ -202,7 +211,7 @@ def run_search(df):
         rec = {"trial": i, **cfg, "val_macro_f1": round(val_f1, 4) if val_f1 == val_f1 else None,
                "status": status, "secs": dt}
         trials.append(rec)
-        print(f"[{i}/{len(configs)}] {cfg['encoder'].split('/')[-1]:13s} "
+        print(f"[{i}/{len(configs)}] {cfg['encoder'].split('/')[-1]:17s} "
               f"lr={cfg['lr']:.0e} ep={cfg['epochs']} bs={cfg['batch_size']} "
               f"ml={cfg['max_len']} wd={cfg['weight_decay']} wu={cfg['warmup_ratio']} "
               f"-> val_f1={rec['val_macro_f1']} ({status}, {dt}s)", flush=True)
